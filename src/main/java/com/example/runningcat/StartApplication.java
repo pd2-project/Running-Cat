@@ -11,10 +11,13 @@ public class StartApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(StartApplication.class.getResource("start-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        try {Scene scene = new Scene(fxmlLoader.load(), 800, 600);
         stage.setTitle("Running Cat 跑跑貓！");
         stage.setScene(scene);
         stage.show();
+         } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {

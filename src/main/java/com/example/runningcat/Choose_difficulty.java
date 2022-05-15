@@ -9,8 +9,7 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-
-
+import java.util.Objects;
 
 
 public class Choose_difficulty {
@@ -21,7 +20,7 @@ public class Choose_difficulty {
     private Parent root;
     public void easy_mode(ActionEvent event) throws IOException {
         System.out.println("easy");
-        Parent root = FXMLLoader.load(getClass().getResource("road-easy-view.fxml"));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("road-easy-view.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -29,7 +28,7 @@ public class Choose_difficulty {
     }
     public void medium_mode(ActionEvent event) throws IOException {
         System.out.println("medium");
-        Parent root = FXMLLoader.load(getClass().getResource("road-medium-view.fxml"));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("road-medium-view.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -37,7 +36,7 @@ public class Choose_difficulty {
     }
     public void hard_mode(ActionEvent event) throws IOException {
         System.out.println("hard");
-        Parent root = FXMLLoader.load(getClass().getResource("road-hard-view.fxml"));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("road-hard-view.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
