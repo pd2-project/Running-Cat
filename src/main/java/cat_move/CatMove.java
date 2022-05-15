@@ -28,7 +28,7 @@ public class CatMove {
         if (y > 0) {
             iv.setX(y += 50);
         } else if (y == 400) {//400這裡要改成鄭紹麒設定的邊界
-            //碰道上面邊界
+            //碰到上面邊界
         }
     }
 
