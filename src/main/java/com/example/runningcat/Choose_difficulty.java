@@ -27,12 +27,16 @@ public class Choose_difficulty {
     public void easy_mode(ActionEvent event) throws IOException {
         System.out.println("easy");
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("road-easy-view.fxml")));
-        Image myImage = new Image(getClass().getResourceAsStream("easy1.jpg"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        easyBG.setImage(myImage);
+        Image myImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("easy1.jpg")));
+        try {
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            easyBG.setImage(myImage);
+        } catch (Exception e) {
+            System.out.println("這個在choose_difficulty時會有例外");
+        }
 
     }
 
@@ -40,22 +44,30 @@ public class Choose_difficulty {
         System.out.println("medium");
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("road-medium-view.fxml")));
         Image myImage = new Image(getClass().getResourceAsStream("medium1.jpg"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        mediumBG.setImage(myImage);
+        try {
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            mediumBG.setImage(myImage);
+        } catch (Exception e) {
+            System.out.println("這個在choose_difficulty時會有例外");
+        }
     }
 
     public void hard_mode(ActionEvent event) throws IOException {
         System.out.println("hard");
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("road-hard-view.fxml")));
         Image myImage = new Image(getClass().getResourceAsStream("hard1.jpg"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        hardBG.setImage(myImage);
+        try {
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            hardBG.setImage(myImage);
+        } catch (Exception e) {
+            System.out.println("這個在choose_difficulty時會有例外");
+        }
     }
 
 
