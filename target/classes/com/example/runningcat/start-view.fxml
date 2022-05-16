@@ -5,31 +5,26 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
-            prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.runningcat.Choose_difficulty">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.runningcat.Choose_difficulty">
    <children>
       <Text layoutX="247.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="請選擇難度" textAlignment="CENTER">
          <font>
-            <Font size="58.0"/>
+            <Font size="58.0" />
          </font>
       </Text>
-      <Button fx:id="button_easy" contentDisplay="CENTER" layoutX="111.0" layoutY="400.0" mnemonicParsing="false"
-              onAction="#easy_mode" text="簡單">
+      <Button fx:id="button_easy" contentDisplay="CENTER" layoutX="111.0" layoutY="400.0" mnemonicParsing="false" onAction="#easy_mode" text="簡單">
          <font>
-            <Font size="32.0"/>
+            <Font size="32.0" />
          </font>
       </Button>
-      <Button fx:id="button_medium" contentDisplay="CENTER" layoutX="334.0" layoutY="400.0" mnemonicParsing="false"
-              onAction="#medium_mode" text="中等">
+      <Button fx:id="button_medium" contentDisplay="CENTER" layoutX="334.0" layoutY="400.0" mnemonicParsing="false" onAction="#medium_mode" text="中等">
          <font>
-            <Font size="32.0"/>
+            <Font size="32.0" />
          </font>
       </Button>
-      <Button fx:id="button_hard" contentDisplay="CENTER" layoutX="567.0" layoutY="400.0" mnemonicParsing="false"
-              onAction="#hard_mode" text="困難">
+      <Button fx:id="button_hard" contentDisplay="CENTER" layoutX="567.0" layoutY="400.0" mnemonicParsing="false" onAction="#hard_mode" text="困難">
          <font>
-            <Font size="32.0"/>
+            <Font size="32.0" />
          </font>
       </Button>
    </children>
