@@ -2,14 +2,10 @@ package com.example.runningcat;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.ListView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -37,9 +33,9 @@ public class Choose_difficulty {
         stage.setScene(scene);
         stage.show();
         // 生成三角錐在視窗頂部的隨機位置
-        root.getChildren().add(cones_controller.Cones_Appear("easy_mode"));
+        root.getChildren().add(cones_controller.cones_appear_move("easy_mode"));
         root.getChildren().add(SP.catImageView());
-        scene.setOnKeyPressed(new EventHandler<KeyEvent>(){
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
                 System.out.println(event.getCode());
@@ -54,7 +50,7 @@ public class Choose_difficulty {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        root.getChildren().add(cones_controller.Cones_Appear("medium_mode"));
+        root.getChildren().add(cones_controller.cones_appear_move("medium_mode"));
         root.getChildren().add(SP.catImageView());
     }
 
@@ -65,7 +61,7 @@ public class Choose_difficulty {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        root.getChildren().add(cones_controller.Cones_Appear("hard_mode"));
+        root.getChildren().add(cones_controller.cones_appear_move("hard_mode"));
         root.getChildren().add(SP.catImageView());
     }
 }
