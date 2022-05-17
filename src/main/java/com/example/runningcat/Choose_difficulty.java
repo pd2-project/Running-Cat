@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -21,41 +22,37 @@ public class Choose_difficulty {
     private Stage stage;
     private Scene scene;
     private Parent root;
-    private ImageView easyBG;
-    private ImageView mediumBG;
-    private ImageView hardBG;
+
+    public SetCatPos SP = new SetCatPos();
+
     public void easy_mode(ActionEvent event) throws IOException {
         System.out.println("easy");
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("road-easy-view.fxml")));
-        Image myImage = new Image(getClass().getResourceAsStream("easy1.jpg"));
+        Pane root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("road-easy-view.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        easyBG.setImage(myImage);
-
+        root.getChildren().add(SP.catImageView());
     }
 
     public void medium_mode(ActionEvent event) throws IOException {
         System.out.println("medium");
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("road-medium-view.fxml")));
-        Image myImage = new Image(getClass().getResourceAsStream("medium1.jpg"));
+        Pane root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("road-medium-view.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        mediumBG.setImage(myImage);
+        root.getChildren().add(SP.catImageView());
     }
 
     public void hard_mode(ActionEvent event) throws IOException {
         System.out.println("hard");
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("road-hard-view.fxml")));
-        Image myImage = new Image(getClass().getResourceAsStream("hard1.jpg"));
+        Pane root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("road-hard-view.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        hardBG.setImage(myImage);
+        root.getChildren().add(SP.catImageView());
     }
 
 
