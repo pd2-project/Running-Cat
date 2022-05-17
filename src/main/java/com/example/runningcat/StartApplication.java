@@ -17,6 +17,7 @@ public class StartApplication extends Application {
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
+        System.out.println("start");
     }
 
     public static void main(String[] args) {
