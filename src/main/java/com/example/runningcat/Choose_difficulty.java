@@ -23,7 +23,7 @@ public class Choose_difficulty {
 
     private Stage stage;
     private Scene scene;
-
+    Cones_Controller cones_controller = new Cones_Controller();
     public void easy_mode(ActionEvent event) throws IOException {
         System.out.println("easy");
         Pane root = (Pane) FXMLLoader.load(Objects.requireNonNull(getClass().getResource("road-easy-view.fxml")));
@@ -33,25 +33,29 @@ public class Choose_difficulty {
         stage.show();
 
         // 生成三角錐在視窗頂部的隨機位置
-        Cones_Controller cones_controller = new Cones_Controller();
-        root.getChildren().add(cones_controller.Cones_Appear());
+
+        root.getChildren().add(cones_controller.Cones_Appear("easy_mode"));
     }
 
     public void medium_mode(ActionEvent event) throws IOException {
         System.out.println("medium");
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("road-medium-view.fxml")));
+        Pane root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("road-medium-view.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+
+        root.getChildren().add(cones_controller.Cones_Appear("medium_mode"));
     }
 
     public void hard_mode(ActionEvent event) throws IOException {
         System.out.println("hard");
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("road-hard-view.fxml")));
+        Pane root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("road-hard-view.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+
+        root.getChildren().add(cones_controller.Cones_Appear("hard_mode"));
     }
 }

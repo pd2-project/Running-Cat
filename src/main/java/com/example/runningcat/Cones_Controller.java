@@ -15,7 +15,7 @@ import java.util.ResourceBundle;
 
 public class Cones_Controller {
     // 設定三角錐的controller，主要負責展示在遊戲畫面上
-    ImageView Cones_Appear() throws FileNotFoundException {
+    ImageView Cones_Appear(String mode) throws FileNotFoundException {
         Image cone_image = new Image(new FileInputStream("src/main/resources/com/example/runningcat/cones.png"));
         ImageView cone_imageView = new ImageView(cone_image);
         cone_imageView.setImage(cone_image);
@@ -26,7 +26,8 @@ public class Cones_Controller {
         }
         System.out.println(randNum);
         // x = 190 剛剛好是車道的左邊, x = 570 是右邊(easy_mode)
-        cone_imageView.setX(randNum);
+        // 車道邊界X座標 - easy:190/570  medium:247/513  hard: 275/485
+        cone_imageView.setX(485);
         cone_imageView.setY(-30.0);
         cone_imageView.setFitHeight(40);
         cone_imageView.setFitWidth(40);
