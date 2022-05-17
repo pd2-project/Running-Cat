@@ -11,7 +11,7 @@ public class SetCatPos {
         launch(args);
     }
 
-    public void start(){
+    public void start () {
         Image image = new Image("cat.png");
         ImageView iv = new ImageView(image);
 
