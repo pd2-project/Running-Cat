@@ -5,7 +5,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.ListView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -16,10 +15,19 @@ import java.util.Objects;
 
 public class Choose_difficulty {
 
+    // 車道邊界X座標 - easy: 190/570, medium: 247/513, hard: 275/485
+    public static int EASY_Width_RIGHT = 570;
+    public static int EASY_Width_LEFT = 190;
+    public static int MEDIUM_Width_RIGHT = 513;
+    public static int MEDIUM_Width_LEFT = 247;
+    public static int HARD_Width_RIGHT = 485;
+    public static int HARD_Width_LEFT = 275;
+
     // 這邊是要判定生成不同大小的障礙物的class，println的地方之後改成傳送給障礙物大小那邊的信號
     private Stage stage;
     private Scene scene;
     public Pane root;
+
     Cones_Controller cones_controller = new Cones_Controller();
     //FXMLLoader loader = new FXMLLoader(getClass().getResource("road-easy-view.fxml"));
     public SetCatPos SP = new SetCatPos();
