@@ -1,6 +1,18 @@
 package com.example.runningcat;
 
+import javafx.scene.image.Image;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
 public class CatMovement {
+
+
+
+    public CatMovement() throws FileNotFoundException {
+        Image cat = new Image(new FileInputStream("src/main/resources/com/example/runningcat/cat.png"));
+    }
+
     public void moveUp(){
         System.out.println("MOVIN' UP");
     }
