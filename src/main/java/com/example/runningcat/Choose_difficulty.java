@@ -58,7 +58,7 @@ public class Choose_difficulty {
         catImageView.setFitWidth(40);
         catImageView.setFitHeight(80);
         catImageView.setX(386);
-        catImageView.setY(150);
+        catImageView.setY(450);
         root.getChildren().add(catImageView);
 
 
