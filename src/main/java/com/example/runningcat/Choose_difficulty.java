@@ -5,26 +5,31 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Objects;
-
-
 public class Choose_difficulty {
+
+    // 車道邊界X座標 - easy: 190/570, medium: 247/513, hard: 275/485
+    public final static int EASY_Width_RIGHT = 570;
+    public final static int EASY_Width_LEFT = 190;
+    public final static int MEDIUM_Width_RIGHT = 513;
+    public final static int MEDIUM_Width_LEFT = 247;
+    public final static int HARD_Width_RIGHT = 485;
+    public final static int HARD_Width_LEFT = 275;
 
     // 這邊是要判定生成不同大小的障礙物的class，println的地方之後改成傳送給障礙物大小那邊的信號
     private Stage stage;
     private Scene scene;
     public Pane root;
+
     public boolean leftKey;
     public boolean rightKey;
     public int angle = 0;
@@ -52,8 +57,8 @@ public class Choose_difficulty {
 
         catImageView.setFitWidth(40);
         catImageView.setFitHeight(80);
-        catImageView.setX(400);
-        catImageView.setY(300);
+        catImageView.setX(386);
+        catImageView.setY(450);
         root.getChildren().add(catImageView);
 
 
@@ -69,28 +74,27 @@ public class Choose_difficulty {
     }
 
 
-
-    public void KeyDetection(){
+    public void KeyDetectionEasy(){
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 
             @Override
             public void handle(KeyEvent event) {
                 if(event.getCode() == KeyCode.A){
-                    leftKey = true;
+
                     angle = -10;
                     catImageView.setRotate(angle);
-                    if(catImageView.getLayoutX() > -200) {
-                        catImageView.setLayoutX(catImageView.getLayoutX() - 2);
-                        System.out.println("PPP");
+                    if(catImageView.getLayoutX() > -190) {
+                        catImageView.setLayoutX(catImageView.getLayoutX() - 15);
                     }
+
                 } else if (event.getCode() == KeyCode.D) {
-                    rightKey = true;
+
                     angle = 10;
                     catImageView.setRotate(angle);
-                    if(catImageView.getLayoutX() < 200){
-                        catImageView.setLayoutX(catImageView.getLayoutX() + 2);
-                        System.out.println("TTT");
+                    if(catImageView.getLayoutX() < 175){
+                        catImageView.setLayoutX(catImageView.getLayoutX() + 15);
                     }
+
                 }
             }
 
@@ -101,54 +105,131 @@ public class Choose_difficulty {
             public void handle(KeyEvent event) {
 
                 if(event.getCode() == KeyCode.A){
-                    leftKey = false;
+
                     angle = 0;
                     catImageView.setRotate(angle);
-                    System.out.println("DADA");
+
                 } else if (event.getCode() == KeyCode.D) {
-                    rightKey = false;
+
                     angle = 0;
                     catImageView.setRotate(angle);
-                    System.out.println("ADAD");
+
                 }
 
             }
         });
     }
-    public void moveCat(){
+    public void KeyDetectionMedium(){
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 
-        if(leftKey == true){
-            if(angle == 0){
-                angle -= 5;
-                System.out.println("AAA");
+            @Override
+            public void handle(KeyEvent event) {
+                if(event.getCode() == KeyCode.A){
+
+                    angle = -10;
+                    catImageView.setRotate(angle);
+                    if(catImageView.getLayoutX() > -130) {
+                        catImageView.setLayoutX(catImageView.getLayoutX() - 12);
+                    }
+
+                } else if (event.getCode() == KeyCode.D) {
+
+                    angle = 10;
+                    catImageView.setRotate(angle);
+                    if(catImageView.getLayoutX() < 110){
+                        catImageView.setLayoutX(catImageView.getLayoutX() + 12);
+                    }
+
+                }
             }
-            catImageView.setRotate(angle);
 
-        }
+        });
 
+        scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+
+                if(event.getCode() == KeyCode.A){
+
+                    angle = 0;
+                    catImageView.setRotate(angle);
+
+                } else if (event.getCode() == KeyCode.D) {
+
+                    angle = 0;
+                    catImageView.setRotate(angle);
+
+                }
+
+            }
+        });
     }
+    public void KeyDetectionHard(){
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+
+            @Override
+            public void handle(KeyEvent event) {
+                if(event.getCode() == KeyCode.A){
+
+                    angle = -10;
+                    catImageView.setRotate(angle);
+                    if(catImageView.getLayoutX() > -100) {
+                        catImageView.setLayoutX(catImageView.getLayoutX() - 8);
+                    }
+
+                } else if (event.getCode() == KeyCode.D) {
+
+                    angle = 10;
+                    catImageView.setRotate(angle);
+                    if(catImageView.getLayoutX() < 88){
+                        catImageView.setLayoutX(catImageView.getLayoutX() + 8);
+                    }
+
+                }
+            }
+
+        });
+
+        scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+
+                if(event.getCode() == KeyCode.A){
+
+                    angle = 0;
+                    catImageView.setRotate(angle);
+
+                } else if (event.getCode() == KeyCode.D) {
+
+                    angle = 0;
+                    catImageView.setRotate(angle);
+
+                }
+
+            }
+        });
+    }
+
 
     public void easy_mode(ActionEvent event) throws IOException {
 
         System.out.println("easy");
         create_view(event, "easy_mode", "road-easy-view.fxml");
-        KeyDetection();
-        moveCat();
+        KeyDetectionEasy();
+
     }
 
     public void medium_mode(ActionEvent event) throws IOException {
 
         System.out.println("medium");
         create_view(event, "medium_mode", "road-medium-view.fxml");
+        KeyDetectionMedium();
 
     }
-
     public void hard_mode(ActionEvent event) throws IOException {
 
         System.out.println("hard");
         create_view(event, "hard_mode", "road-hard-view.fxml");
-
+        KeyDetectionHard();
     }
-
-
 }
