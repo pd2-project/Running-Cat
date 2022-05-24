@@ -30,6 +30,8 @@ public class Choose_difficulty {
     public final static int HARD_Width_RIGHT = 485;
     public final static int HARD_Width_LEFT = 275;
 
+    public static boolean catMovable = true;
+
     private Stage stage;
     private Scene scene;
     public Pane root;
@@ -70,9 +72,10 @@ public class Choose_difficulty {
                     && imageView.getLayoutX() + 40 >= catImageView.getLayoutX()
                     && imageView.getLayoutX() - 17 <= catImageView.getLayoutX()
             ) {
-                System.out.println("||||||||||||||||||");
-                System.out.println("||   game over  ||");
-                System.out.println("||||||||||||||||||");
+                System.out.println("|||||||||||||||||");
+                System.out.println("||  game over  ||");
+                System.out.println("|||||||||||||||||");
+                catMovable = false;
                 timer.stop();
             }
         }
@@ -103,7 +106,7 @@ public class Choose_difficulty {
 
                     angle = -10;
                     catImageView.setRotate(angle);
-                    if (catImageView.getLayoutX() > 190) {
+                    if (catImageView.getLayoutX() > 190 && catMovable) {
                         catImageView.setLayoutX(catImageView.getLayoutX() - 15);
                     }
 
@@ -111,7 +114,7 @@ public class Choose_difficulty {
 
                     angle = 10;
                     catImageView.setRotate(angle);
-                    if (catImageView.getLayoutX() < 570) {
+                    if (catImageView.getLayoutX() < 570 && catMovable) {
                         catImageView.setLayoutX(catImageView.getLayoutX() + 15);
                     }
 
@@ -124,12 +127,12 @@ public class Choose_difficulty {
             @Override
             public void handle(KeyEvent event) {
 
-                if (event.getCode() == KeyCode.A) {
+                if (event.getCode() == KeyCode.A && catMovable) {
 
                     angle = 0;
                     catImageView.setRotate(angle);
 
-                } else if (event.getCode() == KeyCode.D) {
+                } else if (event.getCode() == KeyCode.D && catMovable) {
 
                     angle = 0;
                     catImageView.setRotate(angle);
@@ -170,12 +173,12 @@ public class Choose_difficulty {
             @Override
             public void handle(KeyEvent event) {
 
-                if (event.getCode() == KeyCode.A) {
+                if (event.getCode() == KeyCode.A && catMovable) {
 
                     angle = 0;
                     catImageView.setRotate(angle);
 
-                } else if (event.getCode() == KeyCode.D) {
+                } else if (event.getCode() == KeyCode.D && catMovable) {
 
                     angle = 0;
                     catImageView.setRotate(angle);
@@ -191,7 +194,7 @@ public class Choose_difficulty {
 
             @Override
             public void handle(KeyEvent event) {
-                if (event.getCode() == KeyCode.A) {
+                if (event.getCode() == KeyCode.A && catMovable) {
 
                     angle = -10;
                     catImageView.setRotate(angle);
@@ -199,7 +202,7 @@ public class Choose_difficulty {
                         catImageView.setLayoutX(catImageView.getLayoutX() - 8);
                     }
 
-                } else if (event.getCode() == KeyCode.D) {
+                } else if (event.getCode() == KeyCode.D && catMovable) {
 
                     angle = 10;
                     catImageView.setRotate(angle);
@@ -216,12 +219,12 @@ public class Choose_difficulty {
             @Override
             public void handle(KeyEvent event) {
 
-                if (event.getCode() == KeyCode.A) {
+                if (event.getCode() == KeyCode.A && catMovable) {
 
                     angle = 0;
                     catImageView.setRotate(angle);
 
-                } else if (event.getCode() == KeyCode.D) {
+                } else if (event.getCode() == KeyCode.D && catMovable) {
 
                     angle = 0;
                     catImageView.setRotate(angle);
