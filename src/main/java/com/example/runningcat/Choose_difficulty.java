@@ -1,5 +1,6 @@
 package com.example.runningcat;
 
+import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -11,10 +12,14 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Objects;
+
+import static com.example.runningcat.Cones_Controller.score;
+
 public class Choose_difficulty {
 
     // 車道邊界X座標 - easy: 190/570, medium: 247/513, hard: 275/485
@@ -25,65 +30,80 @@ public class Choose_difficulty {
     public final static int HARD_Width_RIGHT = 485;
     public final static int HARD_Width_LEFT = 275;
 
-    // 這邊是要判定生成不同大小的障礙物的class，println的地方之後改成傳送給障礙物大小那邊的信號
     private Stage stage;
     private Scene scene;
     public Pane root;
-
-    public boolean leftKey;
-    public boolean rightKey;
     public int angle = 0;
 
-
-    Cones_Controller cones_controller = new Cones_Controller();
-    Image catImage;
-
-    {
-        try {
-            catImage = new Image(new FileInputStream("src/main/resources/com/example/runningcat/cat.png"));
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-    }
+    Image catImage = new Image(new FileInputStream("src/main/resources/com/example/runningcat/cat.png"));
 
     ImageView catImageView = new ImageView(catImage);
+    Image cone_image = new Image(new FileInputStream("src/main/resources/com/example/runningcat/cones.png"));
+    ImageView[] cones_array = new ImageView[4];
+    AnimationTimer timer;
 
+    public Choose_difficulty() throws FileNotFoundException {} // 這個不能刪，因為要在建構時丟出FileNotFoundException
 
-    public void create_view(ActionEvent event, String mode, String resource) throws IOException {
-
+    private void create_view(ActionEvent event, String mode, String resource) throws IOException {
         // 這邊寫重複的扣
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(resource)));
-
-
         catImageView.setFitWidth(40);
         catImageView.setFitHeight(80);
-        catImageView.setX(386);
-        catImageView.setY(450);
+        catImageView.setLayoutX(386);
+        catImageView.setLayoutY(450);
         root.getChildren().add(catImageView);
-
 
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        // 生成三角錐在視窗頂部的隨機位置
-
-
-        root.getChildren().add(cones_controller.cones_appear_move(mode));
-
+        // 生成三角錐
+        Cones_Controller.create_cones(mode, root, cone_image, cones_array);
     }
 
+    private void collisionDetect() {
+        // 偵測碰撞的參數
+        for (ImageView imageView : cones_array) {
+            if (
+                    imageView.getLayoutY() + 44 >= catImageView.getLayoutY()
+                    && imageView.getLayoutY() <= catImageView.getLayoutY()
+                    && imageView.getLayoutX() + 40 >= catImageView.getLayoutX()
+                    && imageView.getLayoutX() - 17 <= catImageView.getLayoutX()
+            ) {
+                System.out.println("||||||||||||||||||");
+                System.out.println("||   game over  ||");
+                System.out.println("||||||||||||||||||");
+                timer.stop();
+            }
+        }
+    }
 
-    public void KeyDetectionEasy(){
+    private void start_timer(String mode) {
+        // 藉由幀數做邏輯判斷與動畫
+        timer = new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                Cones_Controller.drop_cones(mode, cones_array);
+                Cones_Controller.checkConesPositionAndReuse(mode, cones_array);
+                collisionDetect();
+                score++;
+                // System.out.println("cat y: " + catImageView.getLayoutY());
+                // System.out.println("cones y: " + cones_array[0].getLayoutY());
+            }
+        };
+        timer.start();
+    }
+
+    public void KeyDetectionEasy() {
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 
             @Override
             public void handle(KeyEvent event) {
-                if(event.getCode() == KeyCode.A){
+                if (event.getCode() == KeyCode.A) {
 
                     angle = -10;
                     catImageView.setRotate(angle);
-                    if(catImageView.getLayoutX() > -190) {
+                    if (catImageView.getLayoutX() > 190) {
                         catImageView.setLayoutX(catImageView.getLayoutX() - 15);
                     }
 
@@ -91,7 +111,7 @@ public class Choose_difficulty {
 
                     angle = 10;
                     catImageView.setRotate(angle);
-                    if(catImageView.getLayoutX() < 175){
+                    if (catImageView.getLayoutX() < 570) {
                         catImageView.setLayoutX(catImageView.getLayoutX() + 15);
                     }
 
@@ -104,7 +124,7 @@ public class Choose_difficulty {
             @Override
             public void handle(KeyEvent event) {
 
-                if(event.getCode() == KeyCode.A){
+                if (event.getCode() == KeyCode.A) {
 
                     angle = 0;
                     catImageView.setRotate(angle);
@@ -119,16 +139,17 @@ public class Choose_difficulty {
             }
         });
     }
-    public void KeyDetectionMedium(){
+
+    public void KeyDetectionMedium() {
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 
             @Override
             public void handle(KeyEvent event) {
-                if(event.getCode() == KeyCode.A){
+                if (event.getCode() == KeyCode.A) {
 
                     angle = -10;
                     catImageView.setRotate(angle);
-                    if(catImageView.getLayoutX() > -130) {
+                    if (catImageView.getLayoutX() > 250) {
                         catImageView.setLayoutX(catImageView.getLayoutX() - 12);
                     }
 
@@ -136,7 +157,7 @@ public class Choose_difficulty {
 
                     angle = 10;
                     catImageView.setRotate(angle);
-                    if(catImageView.getLayoutX() < 110){
+                    if (catImageView.getLayoutX() < 510) {
                         catImageView.setLayoutX(catImageView.getLayoutX() + 12);
                     }
 
@@ -149,7 +170,7 @@ public class Choose_difficulty {
             @Override
             public void handle(KeyEvent event) {
 
-                if(event.getCode() == KeyCode.A){
+                if (event.getCode() == KeyCode.A) {
 
                     angle = 0;
                     catImageView.setRotate(angle);
@@ -164,16 +185,17 @@ public class Choose_difficulty {
             }
         });
     }
-    public void KeyDetectionHard(){
+
+    public void KeyDetectionHard() {
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 
             @Override
             public void handle(KeyEvent event) {
-                if(event.getCode() == KeyCode.A){
+                if (event.getCode() == KeyCode.A) {
 
                     angle = -10;
                     catImageView.setRotate(angle);
-                    if(catImageView.getLayoutX() > -100) {
+                    if (catImageView.getLayoutX() > 282) {
                         catImageView.setLayoutX(catImageView.getLayoutX() - 8);
                     }
 
@@ -181,7 +203,7 @@ public class Choose_difficulty {
 
                     angle = 10;
                     catImageView.setRotate(angle);
-                    if(catImageView.getLayoutX() < 88){
+                    if (catImageView.getLayoutX() < 475) {
                         catImageView.setLayoutX(catImageView.getLayoutX() + 8);
                     }
 
@@ -194,7 +216,7 @@ public class Choose_difficulty {
             @Override
             public void handle(KeyEvent event) {
 
-                if(event.getCode() == KeyCode.A){
+                if (event.getCode() == KeyCode.A) {
 
                     angle = 0;
                     catImageView.setRotate(angle);
@@ -212,24 +234,26 @@ public class Choose_difficulty {
 
 
     public void easy_mode(ActionEvent event) throws IOException {
-
-        System.out.println("easy");
-        create_view(event, "easy_mode", "road-easy-view.fxml");
+        String mode = "easy_mode";
+        System.out.println(mode);
+        create_view(event, mode, "road-easy-view.fxml");
         KeyDetectionEasy();
-
+        start_timer(mode);
     }
 
     public void medium_mode(ActionEvent event) throws IOException {
-
-        System.out.println("medium");
-        create_view(event, "medium_mode", "road-medium-view.fxml");
+        String mode = "medium_mode";
+        System.out.println(mode);
+        create_view(event, mode, "road-medium-view.fxml");
         KeyDetectionMedium();
-
+        start_timer(mode);
     }
-    public void hard_mode(ActionEvent event) throws IOException {
 
-        System.out.println("hard");
-        create_view(event, "hard_mode", "road-hard-view.fxml");
+    public void hard_mode(ActionEvent event) throws IOException {
+        String mode = "hard_mode";
+        System.out.println(mode);
+        create_view(event, mode, "road-hard-view.fxml");
         KeyDetectionHard();
+        start_timer(mode);
     }
 }

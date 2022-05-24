@@ -1,23 +1,19 @@
 package com.example.runningcat;
 
-import javafx.animation.TranslateTransition;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.util.Duration;
+import javafx.scene.layout.Pane;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Objects;
+
 // 設定三角錐的controller，主要負責展示在遊戲畫面上
 public class Cones_Controller {
 
+    static void newConesPosition(String mode, ImageView cone_imageView) {
 
-    ImageView cones_appear_move(String mode) throws FileNotFoundException {
-        Image cone_image = new Image(new FileInputStream("src/main/resources/com/example/runningcat/cones.png"));
-        ImageView cone_imageView = new ImageView(cone_image);
-        cone_imageView.setImage(cone_image);
         double randNum = 0;
-
         // 車道邊界X座標 - easy: 190/570, medium: 247/513, hard: 275/485
         // 根據難度隨機分配位置
         // 越往下越正
@@ -30,26 +26,55 @@ public class Cones_Controller {
                 randNum = Math.random() * 1000;
             }
         } else if (Objects.equals(mode, "hard_mode")) {
-            while (randNum < 27 || randNum > 465) {
+            while (randNum < 275 || randNum > 465) {
                 randNum = Math.random() * 1000;
             }
         }
+        cone_imageView.setLayoutX(randNum);
+        cone_imageView.setLayoutY(-40.0 - (Math.random() * 1000));
+    }
 
-        //圖片出現位置
-        cone_imageView.setX(randNum);
-        cone_imageView.setY(-40.0);
-        cone_imageView.setFitHeight(60);
+
+    static ImageView cones_image_view(String mode, Image cone_image) throws FileNotFoundException {
+
+        ImageView cone_imageView = new ImageView(cone_image);
+
+        newConesPosition(mode, cone_imageView);
+        // cones size
         cone_imageView.setFitWidth(60);
-
-        // 動畫部分
-        TranslateTransition transition = new TranslateTransition();
-        transition.setDuration(Duration.seconds(10));
-        transition.setToY(700);
-        transition.setNode(cone_imageView);
-        transition.play();
-
-        // cone_imageView.setla
+        cone_imageView.setFitHeight(60);
 
         return cone_imageView;
     }
+
+    static void create_cones(String mode, Pane root, Image cone_image, ImageView[] cones_array) throws FileNotFoundException {
+        for (int i = 0; i < cones_array.length; i++) {
+            cones_array[i] = Cones_Controller.cones_image_view(mode, cone_image);
+            root.getChildren().add(cones_array[i]);
+        }
+    }
+
+    static void checkConesPositionAndReuse(String mode, ImageView[] cones_array) {
+        for (int i = 0; i < cones_array.length; i++) {
+            if (cones_array[i].getLayoutY() > 580) {
+                Cones_Controller.newConesPosition(mode, cones_array[i]);
+                speedUp += 0.05;
+            }
+        }
+        System.out.println(score);
+    }
+
+    public static double speedUp = 0;
+    public static double score = 0;
+    static void drop_cones(String mode, ImageView[] cones_array) {
+        for (int i = 0; i < cones_array.length; i++) {
+            if (Objects.equals(mode, "easy_mode"))
+                cones_array[i].setLayoutY(cones_array[i].getLayoutY() + 4 + speedUp);
+            else if (Objects.equals(mode, "medium_mode"))
+                cones_array[i].setLayoutY(cones_array[i].getLayoutY() + 5 + speedUp);
+            else if (Objects.equals(mode, "hard_mode"))
+                cones_array[i].setLayoutY(cones_array[i].getLayoutY() + 6 + speedUp);
+        }
+    }
+
 }
