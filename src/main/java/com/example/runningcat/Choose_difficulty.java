@@ -11,6 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.FileInputStream;
@@ -18,7 +19,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Objects;
 
-import static com.example.runningcat.Cones_Controller.score;
+import static com.example.runningcat.Scoreboard.score;
+
 
 public class Choose_difficulty {
 
@@ -44,6 +46,9 @@ public class Choose_difficulty {
     ImageView[] cones_array = new ImageView[4];
     AnimationTimer timer;
 
+    Text text_score = new Text("" + score); // 分數的textView
+    ImageView score_board_textView = new ImageView(new Image(new FileInputStream("src/main/resources/com/example/runningcat/score_board_background.png")));
+
     public Choose_difficulty() throws FileNotFoundException {} // 這個不能刪，因為要在建構時丟出FileNotFoundException
 
     private void create_view(ActionEvent event, String mode, String resource) throws IOException {
@@ -61,6 +66,8 @@ public class Choose_difficulty {
         stage.show();
         // 生成三角錐
         Cones_Controller.create_cones(mode, root, cone_image, cones_array);
+        // 顯示計分板
+        Scoreboard.show_score(root, text_score, score_board_textView, mode);
     }
 
     private void collisionDetect() {
@@ -87,9 +94,9 @@ public class Choose_difficulty {
             @Override
             public void handle(long now) {
                 Cones_Controller.drop_cones(mode, cones_array);
-                Cones_Controller.checkConesPositionAndReuse(mode, cones_array);
-                collisionDetect();
-                score++;
+                Cones_Controller.checkConesPositionAndReuse(mode, cones_array); // 三角錐位置偵測並更新位置
+                collisionDetect(); // 碰撞偵測
+                Scoreboard.count(text_score); // 更新秒數
                 // System.out.println("cat y: " + catImageView.getLayoutY());
                 // System.out.println("cones y: " + cones_array[0].getLayoutY());
             }
@@ -102,7 +109,7 @@ public class Choose_difficulty {
 
             @Override
             public void handle(KeyEvent event) {
-                if (event.getCode() == KeyCode.A) {
+                if (event.getCode() == KeyCode.A && catMovable) {
 
                     angle = -10;
                     catImageView.setRotate(angle);
@@ -110,7 +117,7 @@ public class Choose_difficulty {
                         catImageView.setLayoutX(catImageView.getLayoutX() - 15);
                     }
 
-                } else if (event.getCode() == KeyCode.D) {
+                } else if (event.getCode() == KeyCode.D && catMovable) {
 
                     angle = 10;
                     catImageView.setRotate(angle);
@@ -148,7 +155,7 @@ public class Choose_difficulty {
 
             @Override
             public void handle(KeyEvent event) {
-                if (event.getCode() == KeyCode.A) {
+                if (event.getCode() == KeyCode.A && catMovable) {
 
                     angle = -10;
                     catImageView.setRotate(angle);
@@ -156,7 +163,7 @@ public class Choose_difficulty {
                         catImageView.setLayoutX(catImageView.getLayoutX() - 12);
                     }
 
-                } else if (event.getCode() == KeyCode.D) {
+                } else if (event.getCode() == KeyCode.D && catMovable) {
 
                     angle = 10;
                     catImageView.setRotate(angle);

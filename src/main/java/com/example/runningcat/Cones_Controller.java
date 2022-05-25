@@ -8,6 +8,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Objects;
 
+
 // 設定三角錐的controller，主要負責展示在遊戲畫面上
 public class Cones_Controller {
 
@@ -55,25 +56,23 @@ public class Cones_Controller {
     }
 
     static void checkConesPositionAndReuse(String mode, ImageView[] cones_array) {
-        for (int i = 0; i < cones_array.length; i++) {
-            if (cones_array[i].getLayoutY() > 580) {
-                Cones_Controller.newConesPosition(mode, cones_array[i]);
+        for (ImageView imageView : cones_array) {
+            if (imageView.getLayoutY() > 580) {
+                Cones_Controller.newConesPosition(mode, imageView);
                 speedUp += 0.05;
             }
         }
-        System.out.println(score);
     }
 
     public static double speedUp = 0;
-    public static double score = 0;
     static void drop_cones(String mode, ImageView[] cones_array) {
-        for (int i = 0; i < cones_array.length; i++) {
+        for (ImageView imageView : cones_array) {
             if (Objects.equals(mode, "easy_mode"))
-                cones_array[i].setLayoutY(cones_array[i].getLayoutY() + 4 + speedUp);
+                imageView.setLayoutY(imageView.getLayoutY() + 4 + speedUp);
             else if (Objects.equals(mode, "medium_mode"))
-                cones_array[i].setLayoutY(cones_array[i].getLayoutY() + 5 + speedUp);
+                imageView.setLayoutY(imageView.getLayoutY() + 5 + speedUp);
             else if (Objects.equals(mode, "hard_mode"))
-                cones_array[i].setLayoutY(cones_array[i].getLayoutY() + 6 + speedUp);
+                imageView.setLayoutY(imageView.getLayoutY() + 6 + speedUp);
         }
     }
 
