@@ -68,11 +68,11 @@ public class Cones_Controller {
     static void drop_cones(String mode, ImageView[] cones_array) {
         for (ImageView imageView : cones_array) {
             if (Objects.equals(mode, "easy_mode"))
-                imageView.setLayoutY(imageView.getLayoutY() + 4 + speedUp);
+                imageView.setLayoutY(imageView.getLayoutY() + 2 + speedUp);
             else if (Objects.equals(mode, "medium_mode"))
-                imageView.setLayoutY(imageView.getLayoutY() + 5 + speedUp);
+                imageView.setLayoutY(imageView.getLayoutY() + 3 + speedUp);
             else if (Objects.equals(mode, "hard_mode"))
-                imageView.setLayoutY(imageView.getLayoutY() + 6 + speedUp);
+                imageView.setLayoutY(imageView.getLayoutY() + 3.5 + speedUp);
         }
     }
 
