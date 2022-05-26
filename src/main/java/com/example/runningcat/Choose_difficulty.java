@@ -40,6 +40,8 @@ public class Choose_difficulty {
     ImageView catImageView = new ImageView(catImage);
     Image cone_image = new Image(new FileInputStream("src/main/resources/com/example/runningcat/cones.png"));
     ImageView[] cones_array = new ImageView[4];
+    Image whiteLine_image = new Image(new FileInputStream("src/main/resources/com/example/runningcat/whiteLine.JPG"));
+    ImageView[] whiteLine_array = new ImageView[6];
     AnimationTimer timer;
 
     public Choose_difficulty() throws FileNotFoundException {} // 這個不能刪，因為要在建構時丟出FileNotFoundException
@@ -59,6 +61,8 @@ public class Choose_difficulty {
         stage.show();
         // 生成三角錐
         Cones_Controller.create_cones(mode, root, cone_image, cones_array);
+
+
     }
 
     private void collisionDetect() {
@@ -85,6 +89,8 @@ public class Choose_difficulty {
             public void handle(long now) {
                 Cones_Controller.drop_cones(mode, cones_array);
                 Cones_Controller.checkConesPositionAndReuse(mode, cones_array);
+                WhiteLine_Controller.drop_whiteLine(mode, whiteLine_array);
+                WhiteLine_Controller.checkWhiteLinePositionAndReuse(mode, whiteLine_array);
                 collisionDetect();
                 score++;
                 // System.out.println("cat y: " + catImageView.getLayoutY());
@@ -237,6 +243,8 @@ public class Choose_difficulty {
         String mode = "easy_mode";
         System.out.println(mode);
         create_view(event, mode, "road-easy-view.fxml");
+        WhiteLine_Controller.create_whiteLine(467, -120, root, whiteLine_image, whiteLine_array);
+        WhiteLine_Controller.create_whiteLine(333, -120, root, whiteLine_image, whiteLine_array);
         KeyDetectionEasy();
         start_timer(mode);
     }
@@ -245,6 +253,7 @@ public class Choose_difficulty {
         String mode = "medium_mode";
         System.out.println(mode);
         create_view(event, mode, "road-medium-view.fxml");
+        WhiteLine_Controller.create_whiteLine(400, -120, root, whiteLine_image, whiteLine_array);
         KeyDetectionMedium();
         start_timer(mode);
     }
@@ -253,6 +262,7 @@ public class Choose_difficulty {
         String mode = "hard_mode";
         System.out.println(mode);
         create_view(event, mode, "road-hard-view.fxml");
+        WhiteLine_Controller.create_whiteLine(400, -120, root, whiteLine_image, whiteLine_array);
         KeyDetectionHard();
         start_timer(mode);
     }
