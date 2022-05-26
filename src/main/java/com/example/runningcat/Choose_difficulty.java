@@ -111,9 +111,11 @@ public class Choose_difficulty {
 
                 Cones_Controller.checkConesPositionAndReuse(mode, cones_array);
                 WhiteLine_Controller.drop_whiteLine(mode, whiteLine_array);
-                WhiteLine_Controller.drop_whiteLine(mode, whiteLine_array_right);
                 WhiteLine_Controller.checkWhiteLinePositionAndReuse(mode, whiteLine_array);
-                WhiteLine_Controller.checkWhiteLinePositionAndReuse(mode, whiteLine_array_right);
+                if (mode.equals("easy_mode")) {
+                    WhiteLine_Controller.checkWhiteLinePositionAndReuse(mode, whiteLine_array_right);
+                    WhiteLine_Controller.drop_whiteLine(mode, whiteLine_array_right);
+                }
                 collisionDetect();
                 score++;
 
