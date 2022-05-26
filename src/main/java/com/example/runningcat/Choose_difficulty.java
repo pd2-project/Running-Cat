@@ -44,6 +44,9 @@ public class Choose_difficulty {
     ImageView catImageView = new ImageView(catImage);
     Image cone_image = new Image(new FileInputStream("src/main/resources/com/example/runningcat/cones.png"));
     ImageView[] cones_array = new ImageView[4];
+    Image whiteLine_image = new Image(new FileInputStream("src/main/resources/com/example/runningcat/whiteLine.JPG"));
+    ImageView[] whiteLine_array = new ImageView[6];
+    ImageView[] whiteLine_array_right = new ImageView[6];
     AnimationTimer timer;
 
     Text text_score = new Text("" + score); // 分數的textView
@@ -54,6 +57,15 @@ public class Choose_difficulty {
     private void create_view(ActionEvent event, String mode, String resource) throws IOException {
         // 這邊寫重複的扣
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(resource)));
+
+        //生成車道線
+        if(Objects.equals(mode, "easy_mode")){
+            WhiteLine_Controller.create_whiteLine(467, -120, root, whiteLine_image, whiteLine_array);
+            WhiteLine_Controller.create_whiteLine(333, -120, root, whiteLine_image, whiteLine_array_right);
+        } else {
+            WhiteLine_Controller.create_whiteLine(400, -120, root, whiteLine_image, whiteLine_array);
+        }
+
         catImageView.setFitWidth(40);
         catImageView.setFitHeight(80);
         catImageView.setLayoutX(386);
@@ -64,8 +76,10 @@ public class Choose_difficulty {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+
         // 生成三角錐
         Cones_Controller.create_cones(mode, root, cone_image, cones_array);
+
         // 顯示計分板
         Scoreboard.show_score(root, text_score, score_board_textView, mode);
     }
@@ -94,9 +108,19 @@ public class Choose_difficulty {
             @Override
             public void handle(long now) {
                 Cones_Controller.drop_cones(mode, cones_array);
+
+                Cones_Controller.checkConesPositionAndReuse(mode, cones_array);
+                WhiteLine_Controller.drop_whiteLine(mode, whiteLine_array);
+                WhiteLine_Controller.drop_whiteLine(mode, whiteLine_array_right);
+                WhiteLine_Controller.checkWhiteLinePositionAndReuse(mode, whiteLine_array);
+                WhiteLine_Controller.checkWhiteLinePositionAndReuse(mode, whiteLine_array_right);
+                collisionDetect();
+                score++;
+
                 Cones_Controller.checkConesPositionAndReuse(mode, cones_array); // 三角錐位置偵測並更新位置
                 collisionDetect(); // 碰撞偵測
                 Scoreboard.count(text_score); // 更新秒數
+
                 // System.out.println("cat y: " + catImageView.getLayoutY());
                 // System.out.println("cones y: " + cones_array[0].getLayoutY());
             }
