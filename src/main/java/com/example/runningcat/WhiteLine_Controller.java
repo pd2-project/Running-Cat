@@ -7,9 +7,11 @@ import javafx.scene.layout.Pane;
 import java.io.FileNotFoundException;
 import java.util.Objects;
 
+import static com.example.runningcat.Cones_Controller.speedUp;
+
 public class WhiteLine_Controller {
 
-    public static double speedUp = 0;
+
 
     static void newWhileLinePosition(int x, int y, ImageView whiteLine_imageview){
 
@@ -42,17 +44,17 @@ public class WhiteLine_Controller {
     static void checkWhiteLinePositionAndReuse(String mode, ImageView[] whiteLine_array){
         if(Objects.equals(mode, "easy_mode")){
             for(int i=0; i< whiteLine_array.length; i++){
-                if(whiteLine_array[i].getLayoutY()>600){
+                if(whiteLine_array[i].getLayoutY()>600 && whiteLine_array[i].getLayoutX()==467){
                     WhiteLine_Controller.newWhileLinePosition(467, -120, whiteLine_array[i]);
+                }
+                if(whiteLine_array[i].getLayoutY()>600 && whiteLine_array[i].getLayoutX()==333){
                     WhiteLine_Controller.newWhileLinePosition(333, -120, whiteLine_array[i]);
-                    speedUp += 0.014;
                 }
             }
         }else{
             for(int i=0; i< whiteLine_array.length; i++){
                 if(whiteLine_array[i].getLayoutY()>600){
                     WhiteLine_Controller.newWhileLinePosition(400, -120, whiteLine_array[i]);
-                    speedUp += 0.014;
                 }
             }
         }
@@ -61,11 +63,11 @@ public class WhiteLine_Controller {
     static void drop_whiteLine(String mode, ImageView[] whiteLine_array) {
         for (int i = 0; i < whiteLine_array.length; i++) {
             if (Objects.equals(mode, "easy_mode"))
-                whiteLine_array[i].setLayoutY(whiteLine_array[i].getLayoutY() + 4 + speedUp);
+                whiteLine_array[i].setLayoutY(whiteLine_array[i].getLayoutY() + 2 + speedUp);
             else if (Objects.equals(mode, "medium_mode"))
-                whiteLine_array[i].setLayoutY(whiteLine_array[i].getLayoutY() + 5 + speedUp);
+                whiteLine_array[i].setLayoutY(whiteLine_array[i].getLayoutY() + 3 + speedUp);
             else if (Objects.equals(mode, "hard_mode"))
-                whiteLine_array[i].setLayoutY(whiteLine_array[i].getLayoutY() + 6 + speedUp);
+                whiteLine_array[i].setLayoutY(whiteLine_array[i].getLayoutY() + 3.5 + speedUp);
         }
     }
 }
