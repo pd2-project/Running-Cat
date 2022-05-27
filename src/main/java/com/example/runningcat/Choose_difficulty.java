@@ -27,7 +27,7 @@ public class Choose_difficulty {
 
     private Stage stage;
     private Scene scene;
-    public Pane root;
+    public static Pane root;
 
     ImageView catImageView = new ImageView(new Image(new FileInputStream("src/main/resources/com/example/runningcat/cat.png")));
     Image cone_image = new Image(new FileInputStream("src/main/resources/com/example/runningcat/cones.png"));
@@ -35,7 +35,7 @@ public class Choose_difficulty {
     Image whiteLine_image = new Image(new FileInputStream("src/main/resources/com/example/runningcat/whiteLine.JPG"));
     ImageView[] whiteLine_array = new ImageView[6];
     ImageView[] whiteLine_array_right = new ImageView[6];
-    AnimationTimer timer;
+    public static AnimationTimer timer;
 
     Text text_score = new Text("" + score); // 分數的textView
     ImageView score_board_textView = new ImageView(new Image(new FileInputStream("src/main/resources/com/example/runningcat/score_board_background.png")));
