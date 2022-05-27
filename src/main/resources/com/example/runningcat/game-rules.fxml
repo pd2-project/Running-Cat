@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.runningcat.RealStartImageView">
+   <children>
+      <TextArea layoutX="106.0" layoutY="56.0" prefHeight="200.0" prefWidth="200.0" text="123&#10;哈囉&#10;測試一下&#10;酷喔" />
+      <Button layoutX="179.0" layoutY="387.0" mnemonicParsing="false" onAction="#game_rules_go_back" prefHeight="83.0" prefWidth="162.0" text="主畫面" />
+   </children>
+</AnchorPane>
