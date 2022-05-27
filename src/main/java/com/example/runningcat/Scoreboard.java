@@ -45,6 +45,7 @@ public class Scoreboard {
     public static void count (Text text_score) {
         text_score.setText("秒數: " + (int)score/60);
         score++;
+
 //        System.out.println(score);
     }
 }

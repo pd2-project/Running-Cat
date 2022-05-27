@@ -6,6 +6,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
+import static com.example.runningcat.Choose_difficulty.*;
+
+
 
 public class Key_Detector {
 
@@ -21,68 +24,53 @@ public class Key_Detector {
             @Override
             public void handle(KeyEvent event) {
                 if ((event.getCode() == KeyCode.A || event.getCode() == KeyCode.LEFT) && catMovable) {
-
                     angle = -10;
                     catImageView.setRotate(angle);
                     if (catImageView.getLayoutX() > 190 && catMovable) {
                         catImageView.setLayoutX(catImageView.getLayoutX() - 15);
                     }
-
                 } else if ((event.getCode() == KeyCode.D || event.getCode() == KeyCode.RIGHT) && catMovable) {
-
                     angle = 10;
                     catImageView.setRotate(angle);
                     if (catImageView.getLayoutX() < 570 && catMovable) {
                         catImageView.setLayoutX(catImageView.getLayoutX() + 15);
                     }
-
                 }
+                Pause_Controller.pause_key_pressed(event, timer, root); // 暫停偵測
             }
-
         });
-
         scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-
                 if ((event.getCode() == KeyCode.A || event.getCode() == KeyCode.LEFT) && catMovable) {
-
                     angle = 0;
                     catImageView.setRotate(angle);
-
                 } else if ((event.getCode() == KeyCode.D || event.getCode() == KeyCode.RIGHT) && catMovable) {
-
                     angle = 0;
                     catImageView.setRotate(angle);
-
                 }
-
             }
         });
     }
 
     public static void KeyDetectionMedium(Scene scene, ImageView catImageView) {
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-
             @Override
             public void handle(KeyEvent event) {
                 if ((event.getCode() == KeyCode.A || event.getCode() == KeyCode.LEFT) && catMovable) {
-
                     angle = -10;
                     catImageView.setRotate(angle);
                     if (catImageView.getLayoutX() > 250) {
                         catImageView.setLayoutX(catImageView.getLayoutX() - 12);
                     }
-
                 } else if ((event.getCode() == KeyCode.D || event.getCode() == KeyCode.RIGHT) && catMovable) {
-
                     angle = 10;
                     catImageView.setRotate(angle);
                     if (catImageView.getLayoutX() < 510) {
                         catImageView.setLayoutX(catImageView.getLayoutX() + 12);
                     }
-
                 }
+                Pause_Controller.pause_key_pressed(event, timer, root); // 暫停偵測
             }
 
         });
@@ -91,12 +79,12 @@ public class Key_Detector {
             @Override
             public void handle(KeyEvent event) {
 
-                if (event.getCode() == KeyCode.A && catMovable) {
+                if ((event.getCode() == KeyCode.A || event.getCode() == KeyCode.LEFT) && catMovable) {
 
                     angle = 0;
                     catImageView.setRotate(angle);
 
-                } else if (event.getCode() == KeyCode.D && catMovable) {
+                } else if ((event.getCode() == KeyCode.D || event.getCode() == KeyCode.RIGHT) && catMovable) {
 
                     angle = 0;
                     catImageView.setRotate(angle);
@@ -129,6 +117,8 @@ public class Key_Detector {
                     }
 
                 }
+                Pause_Controller.pause_key_pressed(event, timer, root); // 暫停偵測
+
             }
 
         });
