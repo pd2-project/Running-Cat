@@ -66,7 +66,7 @@ public class Choose_difficulty {
         Scoreboard.show_score(root, text_score, score_board_textView, mode);
 
         // 放暫停的圖案但不顯示
-        Pause_Controller.create_pause_image(pause_image_center, start_image_corner, pause_image_corner, root, timer);
+        Pause_Controller.create_pause_image(pause_image_center, start_image_corner, pause_image_corner, root);
     }
 
     private void collisionDetect() {

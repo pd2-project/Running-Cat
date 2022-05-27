@@ -16,7 +16,7 @@ public class Pause_Controller {
     static ImageView pause_corner_view;
 
 
-    public static void create_pause_image(ImageView pause_button_center, ImageView start_corner, ImageView pause_corner, Pane root, AnimationTimer timer) {
+    public static void create_pause_image(ImageView pause_button_center, ImageView start_corner, ImageView pause_corner, Pane root) {
         pause_button_center.setFitWidth(100);
         pause_button_center.setFitHeight(100);
         pause_button_center.setLayoutX(356);
@@ -41,7 +41,7 @@ public class Pause_Controller {
         if ((event.getCode() == KeyCode.P || event.getCode() == KeyCode.ESCAPE) && !pause_active) {
             pause_active = true;
             catMovable = false;
-            System.out.println(root.getChildren().contains(pauseImageView));
+            // System.out.println(root.getChildren().contains(pauseImageView));
             root.getChildren().add(pauseImageView);
             root.getChildren().add(start_corner_view);
             root.getChildren().remove(pause_corner_view);
@@ -49,7 +49,7 @@ public class Pause_Controller {
         } else if (event.getCode() == KeyCode.P || event.getCode() == KeyCode.ESCAPE) {
             pause_active = false;
             catMovable = true;
-            System.out.println(root.getChildren().contains(pauseImageView));
+            // System.out.println(root.getChildren().contains(pauseImageView));
             root.getChildren().remove(pauseImageView);
             root.getChildren().remove(start_corner_view);
             root.getChildren().add(pause_corner_view);

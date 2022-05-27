@@ -31,7 +31,7 @@ public class Mouse_Detector {
                 pause_active = false;
                 catMovable = true;
             }
-            System.out.println("center clicked!");
+            // System.out.println("center clicked!");
 
         });
         pause.setOnMouseClicked((MouseEvent e) -> {
@@ -43,8 +43,7 @@ public class Mouse_Detector {
                 pause_active = true;
                 catMovable = false;
             }
-            System.out.println("center clicked!");
-
+            // System.out.println("center clicked!");
         });
     }
 
