@@ -7,9 +7,8 @@ import javafx.scene.image.ImageView;
 
 public class Cat_Controller {
 
-    static ImageView cat_Image_View (Image catImage){
+    static ImageView cat_Image_View (ImageView catImageView){
 
-        ImageView catImageView = new ImageView(catImage);
         catImageView.setFitWidth(40);
         catImageView.setFitHeight(80);
         catImageView.setLayoutX(386);
