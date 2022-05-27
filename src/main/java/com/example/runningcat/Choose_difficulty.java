@@ -116,7 +116,6 @@ public class Choose_difficulty {
                     WhiteLine_Controller.checkWhiteLinePositionAndReuse(mode, whiteLine_array_right);
                     WhiteLine_Controller.drop_whiteLine(mode, whiteLine_array_right);
                 }
-                collisionDetect();
                 score++;
 
                 Cones_Controller.checkConesPositionAndReuse(mode, cones_array); // 三角錐位置偵測並更新位置
@@ -135,7 +134,7 @@ public class Choose_difficulty {
 
             @Override
             public void handle(KeyEvent event) {
-                if (event.getCode() == KeyCode.A && catMovable) {
+                if ((event.getCode() == KeyCode.A || event.getCode() == KeyCode.RIGHT) && catMovable) {
 
                     angle = -10;
                     catImageView.setRotate(angle);
@@ -143,7 +142,7 @@ public class Choose_difficulty {
                         catImageView.setLayoutX(catImageView.getLayoutX() - 15);
                     }
 
-                } else if (event.getCode() == KeyCode.D && catMovable) {
+                } else if ((event.getCode() == KeyCode.D || event.getCode() == KeyCode.LEFT) && catMovable) {
 
                     angle = 10;
                     catImageView.setRotate(angle);
