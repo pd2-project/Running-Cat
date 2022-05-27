@@ -51,7 +51,7 @@ public class Choose_difficulty {
 
     Text text_score = new Text("" + score); // 分數的textView
     ImageView score_board_textView = new ImageView(new Image(new FileInputStream("src/main/resources/com/example/runningcat/score_board_background.png")));
-
+    ImageView pause_image_view = new ImageView(new Image(new FileInputStream("src/main/resources/com/example/runningcat/pause-button.png")));
     public Choose_difficulty() throws FileNotFoundException {} // 這個不能刪，因為要在建構時丟出FileNotFoundException
 
     private void create_view(ActionEvent event, String mode, String resource) throws IOException {
@@ -82,6 +82,9 @@ public class Choose_difficulty {
 
         // 顯示計分板
         Scoreboard.show_score(root, text_score, score_board_textView, mode);
+
+        // 放暫停的圖案但不顯示
+        Pause_Controller.create_pause_image(pause_image_view, root);
     }
 
     private void collisionDetect() {
@@ -116,9 +119,7 @@ public class Choose_difficulty {
                     WhiteLine_Controller.checkWhiteLinePositionAndReuse(mode, whiteLine_array_right);
                     WhiteLine_Controller.drop_whiteLine(mode, whiteLine_array_right);
                 }
-                collisionDetect();
                 score++;
-
                 Cones_Controller.checkConesPositionAndReuse(mode, cones_array); // 三角錐位置偵測並更新位置
                 collisionDetect(); // 碰撞偵測
                 Scoreboard.count(text_score); // 更新秒數
@@ -132,7 +133,6 @@ public class Choose_difficulty {
 
     public void KeyDetectionEasy() {
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-
             @Override
             public void handle(KeyEvent event) {
                 if (event.getCode() == KeyCode.A && catMovable) {
@@ -150,8 +150,8 @@ public class Choose_difficulty {
                     if (catImageView.getLayoutX() < 570 && catMovable) {
                         catImageView.setLayoutX(catImageView.getLayoutX() + 15);
                     }
-
                 }
+                Pause_Controller.pause_key_detect(event, timer, pause_image_view, root);
             }
 
         });
