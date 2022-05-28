@@ -6,7 +6,7 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.runningcat.RealStartImageView">
    <children>
-      <Button layoutX="586.0" layoutY="475.0" mnemonicParsing="false" onAction="#game_rules_go_back" prefHeight="83.0" prefWidth="162.0" text="返回主畫面">
+      <Button accessibleHelp="秀規則如下" layoutX="586.0" layoutY="475.0" mnemonicParsing="false" onAction="#game_rules_go_back" prefHeight="83.0" prefWidth="162.0" text="返回主畫面">
          <font>
             <Font size="21.0" />
          </font></Button>
