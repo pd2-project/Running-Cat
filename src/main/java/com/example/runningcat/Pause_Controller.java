@@ -6,6 +6,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 
+import static com.example.runningcat.Choose_difficulty.game_over;
 import static com.example.runningcat.Key_Detector.catMovable;
 
 
@@ -16,7 +17,7 @@ public class Pause_Controller {
     static ImageView pause_corner_view;
 
 
-    public static void create_pause_image(ImageView pause_button_center, ImageView start_corner, ImageView pause_corner, Pane root, AnimationTimer timer) {
+    public static void create_pause_image(ImageView pause_button_center, ImageView start_corner, ImageView pause_corner, Pane root) {
         pause_button_center.setFitWidth(100);
         pause_button_center.setFitHeight(100);
         pause_button_center.setLayoutX(356);
@@ -38,18 +39,18 @@ public class Pause_Controller {
     }
 
     public static void pause_key_pressed(KeyEvent event, AnimationTimer timer, Pane root) {
-        if ((event.getCode() == KeyCode.P || event.getCode() == KeyCode.ESCAPE) && !pause_active) {
+        if ((event.getCode() == KeyCode.P || event.getCode() == KeyCode.ESCAPE) && !pause_active && !game_over) {
             pause_active = true;
             catMovable = false;
-            System.out.println(root.getChildren().contains(pauseImageView));
+            // System.out.println(root.getChildren().contains(pauseImageView));
             root.getChildren().add(pauseImageView);
             root.getChildren().add(start_corner_view);
             root.getChildren().remove(pause_corner_view);
             timer.stop();
-        } else if (event.getCode() == KeyCode.P || event.getCode() == KeyCode.ESCAPE) {
+        } else if ((event.getCode() == KeyCode.P || event.getCode() == KeyCode.ESCAPE) && !game_over) {
             pause_active = false;
             catMovable = true;
-            System.out.println(root.getChildren().contains(pauseImageView));
+            // System.out.println(root.getChildren().contains(pauseImageView));
             root.getChildren().remove(pauseImageView);
             root.getChildren().remove(start_corner_view);
             root.getChildren().add(pause_corner_view);

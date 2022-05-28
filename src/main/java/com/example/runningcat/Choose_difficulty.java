@@ -39,6 +39,7 @@ public class Choose_difficulty {
     ImageView pause_image_center = new ImageView(new Image(new FileInputStream("src/main/resources/com/example/runningcat/pause-center.png")));
     ImageView pause_image_corner = new ImageView(new Image(new FileInputStream("src/main/resources/com/example/runningcat/pause_image_corner.png")));
     ImageView start_image_corner = new ImageView(new Image(new FileInputStream("src/main/resources/com/example/runningcat/start_image_corner.png")));
+    public static boolean game_over = false;
     public Choose_difficulty() throws FileNotFoundException {} // 這個不能刪，因為要在建構時丟出FileNotFoundException
 
     private void create_view(ActionEvent event, String mode, String resource) throws IOException {
@@ -67,7 +68,7 @@ public class Choose_difficulty {
         Scoreboard.show_score(root, text_score, score_board_textView, mode);
 
         // 放暫停的圖案但不顯示
-        Pause_Controller.create_pause_image(pause_image_center, start_image_corner, pause_image_corner, root, timer);
+        Pause_Controller.create_pause_image(pause_image_center, start_image_corner, pause_image_corner, root);
     }
 
     private void collisionDetect() {
@@ -83,6 +84,7 @@ public class Choose_difficulty {
                 System.out.println("||  game over  ||");
                 System.out.println("|||||||||||||||||");
                 catMovable = false;
+                game_over = true;
                 timer.stop();
             }
         }

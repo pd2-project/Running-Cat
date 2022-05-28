@@ -40,13 +40,13 @@ public class Key_Detector {
 
             @Override
             public void handle(KeyEvent event) {
-                if ((event.getCode() == KeyCode.A || event.getCode() == KeyCode.LEFT) && catMovable) {
+                if ((event.getCode() == KeyCode.A || event.getCode() == KeyCode.LEFT) && catMovable && !game_over) {
                     angle = -10;
                     catImageView.setRotate(angle);
                     if (catImageView.getLayoutX() > leftSideComparingInt && catMovable) {
                         catImageView.setLayoutX(catImageView.getLayoutX() - 15);
                     }
-                } else if ((event.getCode() == KeyCode.D || event.getCode() == KeyCode.RIGHT) && catMovable) {
+                } else if ((event.getCode() == KeyCode.D || event.getCode() == KeyCode.RIGHT) && catMovable && !game_over) {
                     angle = 10;
                     catImageView.setRotate(angle);
                     if (catImageView.getLayoutX() < rightSideComparingInt && catMovable) {
@@ -59,10 +59,10 @@ public class Key_Detector {
         scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                if ((event.getCode() == KeyCode.A || event.getCode() == KeyCode.LEFT) && catMovable) {
+                if ((event.getCode() == KeyCode.A || event.getCode() == KeyCode.LEFT) && catMovable && !game_over) {
                     angle = 0;
                     catImageView.setRotate(angle);
-                } else if ((event.getCode() == KeyCode.D || event.getCode() == KeyCode.RIGHT) && catMovable) {
+                } else if ((event.getCode() == KeyCode.D || event.getCode() == KeyCode.RIGHT) && catMovable && !game_over) {
                     angle = 0;
                     catImageView.setRotate(angle);
                 }
