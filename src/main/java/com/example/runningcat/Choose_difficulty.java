@@ -17,6 +17,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Objects;
 
+import static com.example.runningcat.RealStartImageView.go_back_button;
 import static com.example.runningcat.Scoreboard.score;
 import static com.example.runningcat.Key_Detector.catMovable;
 

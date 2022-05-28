@@ -1,16 +1,26 @@
 package com.example.runningcat;
 
 import javafx.animation.AnimationTimer;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.Objects;
 
 import static com.example.runningcat.Choose_difficulty.game_over;
 import static com.example.runningcat.Key_Detector.catMovable;
 import static com.example.runningcat.Pause_Controller.pause_active;
 
 public class Mouse_Detector {
-    public static void pause_click(ImageView center, ImageView start, ImageView pause,Pane root, AnimationTimer timer){
+    public static void pause_click(ImageView center, ImageView start, ImageView pause, Pane root, AnimationTimer timer){
         center.setOnMouseClicked((MouseEvent e) -> {
             if (pause_active && !game_over) {
                 root.getChildren().remove(center);
