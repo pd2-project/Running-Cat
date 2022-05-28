@@ -43,7 +43,7 @@ public class Scoreboard {
         root.getChildren().add(text_score);
     }
     public static void count (Text text_score) {
-        text_score.setText("秒數: " + (int)score/60);
+        text_score.setText("分數: " + (int)score/60);
         score++;
 
 //        System.out.println(score);

@@ -2,6 +2,7 @@ package com.example.runningcat;
 
 import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -118,7 +119,7 @@ public class Choose_difficulty {
         String mode = "easy_mode";
         System.out.println(mode);
         create_view(event, mode, "road-easy-view.fxml");
-        Key_Detector.KeyDetectionEasy(scene,catImageView);
+        Key_Detector.KeyDetection(scene,catImageView,mode);
         start_timer(mode);
         Mouse_Detector.pause_click(pause_image_center, start_image_corner, pause_image_corner, root, timer);
     }
@@ -127,7 +128,7 @@ public class Choose_difficulty {
         String mode = "medium_mode";
         System.out.println(mode);
         create_view(event, mode, "road-medium-view.fxml");
-        Key_Detector.KeyDetectionMedium(scene,catImageView);
+        Key_Detector.KeyDetection(scene,catImageView,mode);
         start_timer(mode);
         Mouse_Detector.pause_click(pause_image_center, start_image_corner, pause_image_corner, root, timer);
     }
@@ -136,7 +137,7 @@ public class Choose_difficulty {
         String mode = "hard_mode";
         System.out.println(mode);
         create_view(event, mode, "road-hard-view.fxml");
-        Key_Detector.KeyDetectionHard(scene,catImageView);
+        Key_Detector.KeyDetection(scene,catImageView,mode);
         start_timer(mode);
         Mouse_Detector.pause_click(pause_image_center, start_image_corner, pause_image_corner, root, timer);
     }
