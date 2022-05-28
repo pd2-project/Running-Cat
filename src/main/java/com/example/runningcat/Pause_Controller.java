@@ -6,6 +6,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 
+import static com.example.runningcat.Choose_difficulty.game_over;
 import static com.example.runningcat.Key_Detector.catMovable;
 
 
@@ -38,7 +39,7 @@ public class Pause_Controller {
     }
 
     public static void pause_key_pressed(KeyEvent event, AnimationTimer timer, Pane root) {
-        if ((event.getCode() == KeyCode.P || event.getCode() == KeyCode.ESCAPE) && !pause_active) {
+        if ((event.getCode() == KeyCode.P || event.getCode() == KeyCode.ESCAPE) && !pause_active && !game_over) {
             pause_active = true;
             catMovable = false;
             // System.out.println(root.getChildren().contains(pauseImageView));
@@ -46,7 +47,7 @@ public class Pause_Controller {
             root.getChildren().add(start_corner_view);
             root.getChildren().remove(pause_corner_view);
             timer.stop();
-        } else if (event.getCode() == KeyCode.P || event.getCode() == KeyCode.ESCAPE) {
+        } else if ((event.getCode() == KeyCode.P || event.getCode() == KeyCode.ESCAPE) && !game_over) {
             pause_active = false;
             catMovable = true;
             // System.out.println(root.getChildren().contains(pauseImageView));
