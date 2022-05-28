@@ -3,8 +3,6 @@ package com.example.runningcat;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-
-
 public class Cat_Controller {
 
     static ImageView cat_Image_View (ImageView catImageView){
@@ -17,6 +15,4 @@ public class Cat_Controller {
         return catImageView;
 
     }
-
-
 }

@@ -16,7 +16,6 @@ public class RealStartImageView {
     private Stage stage;
     private Scene scene;
 
-
     public void game_start(ActionEvent event) throws IOException {
 
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("start-view.fxml")));
