@@ -1,6 +1,5 @@
 package com.example.runningcat;
 
-//import javafx.scene.layout.FlowPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
