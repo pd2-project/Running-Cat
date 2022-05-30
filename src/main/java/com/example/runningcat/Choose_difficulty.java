@@ -150,6 +150,8 @@ public class Choose_difficulty {
             scene.setRoot(root);
             stage.setScene(scene);
             stage.show();
+            game_over = false;
+            catMovable = true;
         });
         root.getChildren().add(restart_image);
 
