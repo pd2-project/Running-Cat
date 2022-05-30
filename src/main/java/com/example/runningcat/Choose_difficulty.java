@@ -2,12 +2,13 @@ package com.example.runningcat;
 
 import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -17,7 +18,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Objects;
 
-import static com.example.runningcat.RealStartImageView.go_back_button;
+import static com.example.runningcat.Pause_Controller.pause_corner_view;
 import static com.example.runningcat.Scoreboard.score;
 import static com.example.runningcat.Key_Detector.catMovable;
 
@@ -86,6 +87,11 @@ public class Choose_difficulty {
                 System.out.println("|||||||||||||||||");
                 catMovable = false;
                 game_over = true;
+                remove_all_nodes(); // 移除所有節點
+                // 背景改變
+                // 把遊戲重來圖片add上來
+                // unicode
+                // 把圖片用setOnMouseClicked
                 timer.stop();
             }
         }
@@ -115,6 +121,17 @@ public class Choose_difficulty {
             }
         };
         timer.start();
+    }
+    public void remove_all_nodes() {
+        root.getChildren().remove(catImageView);
+        root.getChildren().removeAll(cones_array);
+        root.getChildren().remove(score_board_textView);
+        root.getChildren().removeAll(whiteLine_array);
+        root.getChildren().removeAll(whiteLine_array_right);
+        root.getChildren().remove(pause_image_center);
+        root.getChildren().remove(pause_corner_view);
+        root.getChildren().remove(start_image_corner);
+        root.getChildren().remove(text_score);
     }
 
 
