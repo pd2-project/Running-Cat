@@ -40,6 +40,8 @@ public class Choose_difficulty {
     ImageView pause_image_center = new ImageView(new Image(new FileInputStream("src/main/resources/com/example/runningcat/pause-center.png")));
     ImageView pause_image_corner = new ImageView(new Image(new FileInputStream("src/main/resources/com/example/runningcat/pause_image_corner.png")));
     ImageView start_image_corner = new ImageView(new Image(new FileInputStream("src/main/resources/com/example/runningcat/start_image_corner.png")));
+    ImageView anya_image = new ImageView(new Image(new FileInputStream("src/main/resources/com/example/runningcat/end.png")));
+    ImageView restart_image = new ImageView(new Image(new FileInputStream("src/main/resources/com/example/runningcat/restart.png")));
     public static boolean game_over = false;
     public Choose_difficulty() throws FileNotFoundException {} // 這個不能刪，因為要在建構時丟出FileNotFoundException
 
@@ -87,8 +89,8 @@ public class Choose_difficulty {
                 catMovable = false;
                 game_over = true;
                 remove_all_nodes(); // 移除所有節點
-                // 背景改變
-                // 把遊戲重來圖片add上來
+                root.getChildren().add(anya_image);// 背景改變
+                restart();// 把遊戲重來圖片add上來
                 // unicode
                 // 把圖片用setOnMouseClicked
                 timer.stop();
@@ -132,6 +134,29 @@ public class Choose_difficulty {
         root.getChildren().remove(start_image_corner);
         root.getChildren().remove(text_score);
     }
+
+    public void restart(){
+        restart_image.setFitWidth(100);
+        restart_image.setFitHeight(80);
+        restart_image.setLayoutX(350);
+        restart_image.setLayoutY(480);
+        restart_image.setOnMouseClicked((MouseEvent e) -> {
+            try {
+                root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("real-start-view.fxml")));
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+            stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+            scene.setRoot(root);
+            stage.setScene(scene);
+            stage.show();
+            game_over = false;
+            catMovable = true;
+        });
+        root.getChildren().add(restart_image);
+
+    }
+
 
 
     public void easy_mode(ActionEvent event) throws IOException {
