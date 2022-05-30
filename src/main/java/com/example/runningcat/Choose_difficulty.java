@@ -5,10 +5,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -27,8 +25,9 @@ public class Choose_difficulty {
     private Stage stage;
     private Scene scene;
     public static Pane root;
+    String catImageUrl =new Cat_choose().catImageURL;
 
-    ImageView catImageView = new ImageView(new Image(new FileInputStream("src/main/resources/com/example/runningcat/cat.png")));
+    ImageView catImageView = new ImageView(new Image(new FileInputStream(catImageUrl)));
     Image cone_image = new Image(new FileInputStream("src/main/resources/com/example/runningcat/cones.png"));
     ImageView[] cones_array = new ImageView[4];
     Image whiteLine_image = new Image(new FileInputStream("src/main/resources/com/example/runningcat/whiteLine.JPG"));

@@ -27,7 +27,7 @@ public class RealStartImageView {
 
     public void game_start(ActionEvent event) throws IOException {
 
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("start-view.fxml")));
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("choose-character.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -39,7 +39,6 @@ public class RealStartImageView {
         go_back_button.setLayoutX(20);
         go_back_button.setLayoutY(20);
         go_back_button.setOnMouseClicked((MouseEvent e) -> {
-            System.out.println("tesst");
             try {
                 root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("real-start-view.fxml")));
             } catch (IOException ex) {
@@ -64,7 +63,7 @@ public class RealStartImageView {
                         
                         - 共有三種難度可以選擇，貓咪會隨時間越跑越快
                         
-                        - 碰到三角錐你就等著被安尼亞嘲諷^^
+                        - 碰到三角錐你就等著被安妮亞嘲諷^^
                                                             """;
         Label label = new Label(WORDS);
         HBox hbox = new HBox();
