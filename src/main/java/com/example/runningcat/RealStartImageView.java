@@ -83,9 +83,6 @@ public class RealStartImageView {
         hbox.getChildren().add((label));
         root.getChildren().add(hbox);
         stage.show();
-
-
-
     }
 
     public void game_rules_go_back(ActionEvent event) throws IOException {
