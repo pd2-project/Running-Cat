@@ -26,7 +26,7 @@ public class Choose_difficulty {
     private Stage stage;
     private Scene scene;
     public static Pane root;
-    String catImageUrl =new Cat_choose().catImageURL;
+    String catImageUrl = Cat_choose.catImageURL;
 
     ImageView catImageView = new ImageView(new Image(new FileInputStream(catImageUrl)));
     Image cone_image = new Image(new FileInputStream("src/main/resources/com/example/runningcat/cones.png"));
@@ -76,7 +76,7 @@ public class Choose_difficulty {
         Pause_Controller.create_pause_image(pause_image_center, start_image_corner, pause_image_corner, root);
     }
 
-    private void collisionDetect(String mode) {
+    private void collisionDetect(String mode) throws InterruptedException {
         // 偵測碰撞的參數
         for (ImageView imageView : cones_array) {
             if (
@@ -91,6 +91,7 @@ public class Choose_difficulty {
 
                 catMovable = false;
                 game_over = true;
+                Thread.sleep(1100); // 增加停頓效果
                 remove_all_nodes(); // 移除所有節點
                 root.getChildren().add(anya_image);// 背景改變
                 restart();// 把遊戲重來圖片add上來
@@ -129,7 +130,11 @@ public class Choose_difficulty {
                 }
                 score++;
                 Cones_Controller.checkConesPositionAndReuse(mode, cones_array); // 三角錐位置偵測並更新位置
-                collisionDetect(mode); // 碰撞偵測
+                try {
+                    collisionDetect(mode); // 碰撞偵測
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
                 Scoreboard.count(text_score); // 更新秒數
 
                 // System.out.println("cat y: " + catImageView.getLayoutY());
