@@ -17,6 +17,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Objects;
 
+import static com.example.runningcat.Cones_Controller.speedUp;
 import static com.example.runningcat.Pause_Controller.pause_corner_view;
 import static com.example.runningcat.Scoreboard.score;
 import static com.example.runningcat.Key_Detector.catMovable;
@@ -114,6 +115,7 @@ public class Choose_difficulty {
                 history_mode = mode;
                 score = 0;
                 timer.stop();
+                speedUp = 0;
             }
         }
     }
