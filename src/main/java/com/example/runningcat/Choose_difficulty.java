@@ -20,6 +20,8 @@ import java.util.Objects;
 import static com.example.runningcat.Pause_Controller.pause_corner_view;
 import static com.example.runningcat.Scoreboard.score;
 import static com.example.runningcat.Key_Detector.catMovable;
+import static com.example.runningcat.RealStartImageView.history_score;
+import static com.example.runningcat.RealStartImageView.history_mode;
 
 public class Choose_difficulty {
 
@@ -91,7 +93,7 @@ public class Choose_difficulty {
 
                 catMovable = false;
                 game_over = true;
-                Thread.sleep(1100); // 增加停頓效果
+                Thread.sleep(600); // 增加停頓效果
                 remove_all_nodes(); // 移除所有節點
                 root.getChildren().add(anya_image);// 背景改變
                 restart();// 把遊戲重來圖片add上來
@@ -108,6 +110,8 @@ public class Choose_difficulty {
                 root.getChildren().add(anya_score);
                 // unicode
                 // 把圖片用setOnMouseClicked
+                history_score = (int)score / 60;
+                history_mode = mode;
                 score = 0;
                 timer.stop();
             }

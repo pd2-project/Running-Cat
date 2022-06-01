@@ -21,5 +21,6 @@
             <Font size="29.0" />
          </font>
       </Text>
+      <Button layoutX="340.0" layoutY="364.0" mnemonicParsing="false" onAction="#show_history" prefHeight="67.0" prefWidth="120.0" text="排行榜" />
    </children>
 </AnchorPane>
