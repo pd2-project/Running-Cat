@@ -149,6 +149,10 @@ public class RealStartImageView {
                 tmp_arr[i] = history_score;
                 added = true;
                 RealStartImageView.history_score = 0;
+            } else if (arr[i] == 0 && arr[i - 1] != 0 && !added) {
+                tmp_arr[i] = history_score;
+                added = true;
+                RealStartImageView.history_score = 0;
             } else if (added) {
                 tmp_arr[i] = arr[i - 1];
             } else {
